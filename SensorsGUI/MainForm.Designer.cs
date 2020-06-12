@@ -48,18 +48,22 @@
             this.smokeLedState = new System.Windows.Forms.Label();
             this.labelSmokeSensorValue = new System.Windows.Forms.Label();
             this.smokeValueLabel = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.part4groupBox = new System.Windows.Forms.GroupBox();
             this.port = new System.IO.Ports.SerialPort(this.components);
             this.timerToUpdateValues = new System.Windows.Forms.Timer(this.components);
+            this.motorStateLAbel = new System.Windows.Forms.Label();
+            this.panelMotorState = new System.Windows.Forms.Panel();
+            this.stateMotorLabel = new System.Windows.Forms.Label();
+            this.pwnValueG = new System.Windows.Forms.Label();
+            this.labelg = new System.Windows.Forms.Label();
             this.part1groupBox.SuspendLayout();
             this.panelLedState.SuspendLayout();
             this.part2GroupBox.SuspendLayout();
             this.fanStatePanel.SuspendLayout();
             this.part3groupbox.SuspendLayout();
             this.panelSmokeState.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.part4groupBox.SuspendLayout();
+            this.panelMotorState.SuspendLayout();
             this.SuspendLayout();
             // 
             // ldrLabel
@@ -248,37 +252,19 @@
             this.smokeValueLabel.TabIndex = 0;
             this.smokeValueLabel.Text = "Sensor Reading:";
             // 
-            // groupBox3
+            // part4groupBox
             // 
-            this.groupBox3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Location = new System.Drawing.Point(423, 281);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(376, 249);
-            this.groupBox3.TabIndex = 5;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "LDR and LED";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(174, 74);
-            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 29);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "label2";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 74);
-            this.label6.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(163, 29);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "LDR Reading:";
+            this.part4groupBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.part4groupBox.Controls.Add(this.motorStateLAbel);
+            this.part4groupBox.Controls.Add(this.labelg);
+            this.part4groupBox.Controls.Add(this.panelMotorState);
+            this.part4groupBox.Controls.Add(this.pwnValueG);
+            this.part4groupBox.Location = new System.Drawing.Point(423, 281);
+            this.part4groupBox.Name = "part4groupBox";
+            this.part4groupBox.Size = new System.Drawing.Size(376, 249);
+            this.part4groupBox.TabIndex = 5;
+            this.part4groupBox.TabStop = false;
+            this.part4groupBox.Text = "Control Motor With PWM";
             // 
             // port
             // 
@@ -286,8 +272,57 @@
             // 
             // timerToUpdateValues
             // 
-            this.timerToUpdateValues.Interval = 900;
+            this.timerToUpdateValues.Interval = 1000;
             this.timerToUpdateValues.Tick += new System.EventHandler(this.ldrTimer_Tick);
+            // 
+            // motorStateLAbel
+            // 
+            this.motorStateLAbel.AutoSize = true;
+            this.motorStateLAbel.Location = new System.Drawing.Point(111, 126);
+            this.motorStateLAbel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.motorStateLAbel.Name = "motorStateLAbel";
+            this.motorStateLAbel.Size = new System.Drawing.Size(136, 29);
+            this.motorStateLAbel.TabIndex = 9;
+            this.motorStateLAbel.Text = "Motor State";
+            // 
+            // panelMotorState
+            // 
+            this.panelMotorState.Controls.Add(this.stateMotorLabel);
+            this.panelMotorState.Location = new System.Drawing.Point(111, 158);
+            this.panelMotorState.Name = "panelMotorState";
+            this.panelMotorState.Size = new System.Drawing.Size(142, 65);
+            this.panelMotorState.TabIndex = 8;
+            // 
+            // stateMotorLabel
+            // 
+            this.stateMotorLabel.AutoSize = true;
+            this.stateMotorLabel.Location = new System.Drawing.Point(45, 18);
+            this.stateMotorLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.stateMotorLabel.Name = "stateMotorLabel";
+            this.stateMotorLabel.Size = new System.Drawing.Size(50, 29);
+            this.stateMotorLabel.TabIndex = 4;
+            this.stateMotorLabel.Text = "ON";
+            // 
+            // pwnValueG
+            // 
+            this.pwnValueG.AutoSize = true;
+            this.pwnValueG.Location = new System.Drawing.Point(206, 74);
+            this.pwnValueG.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.pwnValueG.Name = "pwnValueG";
+            this.pwnValueG.Size = new System.Drawing.Size(70, 29);
+            this.pwnValueG.TabIndex = 7;
+            this.pwnValueG.Text = "value";
+            this.pwnValueG.Click += new System.EventHandler(this.pwnValueG_Click);
+            // 
+            // labelg
+            // 
+            this.labelg.AutoSize = true;
+            this.labelg.Location = new System.Drawing.Point(48, 74);
+            this.labelg.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.labelg.Name = "labelg";
+            this.labelg.Size = new System.Drawing.Size(144, 29);
+            this.labelg.TabIndex = 6;
+            this.labelg.Text = "PWM Value:";
             // 
             // SensorsGUI
             // 
@@ -295,7 +330,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(811, 552);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.part4groupBox);
             this.Controls.Add(this.part3groupbox);
             this.Controls.Add(this.part2GroupBox);
             this.Controls.Add(this.part1groupBox);
@@ -318,8 +353,10 @@
             this.part3groupbox.PerformLayout();
             this.panelSmokeState.ResumeLayout(false);
             this.panelSmokeState.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.part4groupBox.ResumeLayout(false);
+            this.part4groupBox.PerformLayout();
+            this.panelMotorState.ResumeLayout(false);
+            this.panelMotorState.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -338,9 +375,7 @@
         private System.Windows.Forms.GroupBox part3groupbox;
         private System.Windows.Forms.Label labelSmokeSensorValue;
         private System.Windows.Forms.Label smokeValueLabel;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox part4groupBox;
         private System.IO.Ports.SerialPort port;
         private System.Windows.Forms.Timer timerToUpdateValues;
         private System.Windows.Forms.Label fanStateLabel;
@@ -349,6 +384,11 @@
         private System.Windows.Forms.Label smokeLedStateLAbel;
         private System.Windows.Forms.Panel panelSmokeState;
         private System.Windows.Forms.Label smokeLedState;
+        private System.Windows.Forms.Label motorStateLAbel;
+        private System.Windows.Forms.Label labelg;
+        private System.Windows.Forms.Panel panelMotorState;
+        private System.Windows.Forms.Label stateMotorLabel;
+        private System.Windows.Forms.Label pwnValueG;
     }
 }
 

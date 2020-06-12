@@ -18,6 +18,12 @@ namespace SensorsGUI
         string smoke_led_state = "OFF";
         string smoke_value;
         string ldr_value;
+        bool pwm_sent = false;
+        string led_state = "OFF";
+        string fan_state = "OFF";
+        string room_temperature;
+        string pwm_value;
+        string motor_state="OFF";
         public SensorsGUI()
         {
             InitializeComponent();
@@ -36,14 +42,13 @@ namespace SensorsGUI
                 Application.Exit();
             }
         }
-        string led_state = "OFF";
-        string fan_state = "OFF";
-        string tem_val;
+      
         private string getValues()
         {
             string result = "";
             try
             {
+
                 string reading = port.ReadLine();
                 string[] readings = reading.Split(' ');
                 foreach (string line in readings)
@@ -56,13 +61,18 @@ namespace SensorsGUI
                     }
                     else if (read[0] == "FAN")
                     {
-                        tem_val = read[2];
+                        room_temperature = read[2];
                         fan_state = read[1];
                     }
                     else if (read[0] == "SMOKE")
                     {
                         smoke_value = read[2];
                         smoke_led_state = read[1];
+                    }
+                    else if(read[0] == "MOTOR")
+                    {
+                        pwm_value = read[2];
+                        motor_state = read[1];
                     }
                 }
             }
@@ -91,11 +101,11 @@ namespace SensorsGUI
         {
             try
             {
-                if (int.Parse(tem_val) >= 30)
+                if (int.Parse(room_temperature) >= 30)
                 {
                     temperatureLabelValue.BackColor = Color.Yellow;
                 }
-                else if (int.Parse(tem_val) >= 40)
+                else if (int.Parse(room_temperature) >= 40)
                 {
                     temperatureLabelValue.BackColor = Color.Orange;
                 }
@@ -123,6 +133,15 @@ namespace SensorsGUI
                 {
                     panelLedState.BackColor = Color.IndianRed;
                 }
+                if (motor_state == "ON")
+                {
+                    panelMotorState.BackColor = Color.Green;
+                }
+                else if (motor_state == "OFF")
+                {
+                    panelMotorState.BackColor = Color.IndianRed;
+                }
+
             }
             catch
             {
@@ -135,9 +154,16 @@ namespace SensorsGUI
             ldrValueLabel.Text = ldr_value;
             ledValueLabel.Text = led_state;
             fanStateValue.Text = fan_state;
-            temperatureLabelValue.Text = tem_val;
+            pwnValueG.Text = pwm_value;
+            temperatureLabelValue.Text = room_temperature;
             labelSmokeSensorValue.Text = smoke_value;
             smokeLedState.Text = smoke_led_state;
+            stateMotorLabel.Text = motor_state;
+        }
+
+        private void pwnValueG_Click(object sender, EventArgs e)
+        {
+
         }
     }
   
